@@ -29,9 +29,6 @@ public with sharing class TwitterIntegrationController {
         String requestBody = JSON.serialize(requestBodyMap);
         req.setBody(requestBody);
 
-
-        //req.setBody('{"status": "' + tweetText + '", "screen_name": "' + twitterHandle + '"}');
-
         Http http = new Http();
         HttpResponse res = http.send(req);
 
@@ -39,9 +36,9 @@ public with sharing class TwitterIntegrationController {
         //     throw new CalloutException('Error posting tweet: ' + res.getBody());
         // }
 
-        // Parse response if needed
         System.debug('code ' + res.getStatusCode());
         System.debug('code ' + res.getBody());
+
         TweetResponse tweetResponse = (TweetResponse) JSON.deserialize(res.getBody(), TweetResponse.class);
         return tweetResponse;
     }

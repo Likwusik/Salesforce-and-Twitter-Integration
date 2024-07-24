@@ -1,20 +1,19 @@
 public with sharing class Twitter0Auth1 {
 
     private static Twitter_API_Setting__mdt twitterSettings = Twitter_API_Setting__mdt.getInstance('Default_Configuration');
-    private static final String CONSUMER_KEY = 'Oqw6vvhLDNVuuLxMLNF2ZF1kz';
-    private static final String CONSUMER_SECRET = 'IH1HW0f80Znn4GAcmv03jYKMxzV4yUBpoZrlEj6k46UUMPDJnl';
-    private static final String ACCESS_TOKEN = '1477349289294716940-6XsIbVk8gIWl8QntDjaK0t3PDeXQko'; 
-    private static final String ACCESS_TOKEN_SECRET = 'sz2IOqLYPpaKrdGuP0bmQlTq5cNsvQR0oIfsjTTForYdS'; 
+
+
+    private static final String CONSUMER_KEY = twitterSettings.API_Key__c;
+    private static final String CONSUMER_SECRET = twitterSettings.API_Key_Secret__c;
+    private static final String ACCESS_TOKEN = twitterSettings.Access_Token__c; 
+    private static final String ACCESS_TOKEN_SECRET = twitterSettings.Access_Token_Secret__c;
 
     public static String getAuthorizationHeader(String httpMethod, String endpoint) {
             
         DateTime dateTimeNow = dateTime.now();
         String timestamp = ''+(dateTimeNow.getTime()/1000);
-        //String timestamp = String.valueOf(DateTime.now().getTime() / 1000);
         
         String nonce = generateNonce();
-
-        //nonce = EncodingUtil.base64Encode(Blob.valueOf(nonce));
 
         Map<String, String> oauthParams = new Map<String, String>{
             'oauth_consumer_key' => CONSUMER_KEY,
@@ -27,26 +26,7 @@ public with sharing class Twitter0Auth1 {
         }; 
             
         String authSignature = generateSignature(httpMethod, endpoint, oauthParams);
-        /*Map<String, String> signatureParams = new Map<String, String>();
-        signatureParams.putAll(oauthParams);
 
-        List<String> sortedKeys = new List<String>(signatureParams.keySet());
-        sortedKeys.sort();
-
-        String signatureBaseString = httpMethod.toUpperCase() + '&' + EncodingUtil.urlEncode(endpoint, 'UTF-8') + '&';
-        for (String key : sortedKeys) {
-            String value = signatureParams.get(key);
-            signatureBaseString += EncodingUtil.urlEncode(key, 'UTF-8') + '=' + EncodingUtil.urlEncode(value, 'UTF-8') + '&';
-        }
-
-        signatureBaseString = signatureBaseString.removeEnd('&');
-
-        String signingKey = EncodingUtil.urlEncode(CONSUMER_SECRET, 'UTF-8') + '&' + EncodingUtil.urlEncode(ACCESS_TOKEN_SECRET, 'UTF-8');
-        
-        // String signingKey = CONSUMER_SECRET + '&' + ACCESS_TOKEN_SECRET;
-        Blob signatureBlob = Crypto.generateMac('HMACSHA1', Blob.valueOf(signatureBaseString), Blob.valueOf(signingKey));
-        String signature = EncodingUtil.base64Encode(signatureBlob);
-*/
         oauthParams.put('oauth_signature', authSignature);
 		
         String oauthHeader = 'OAuth ';
