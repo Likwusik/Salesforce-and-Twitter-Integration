@@ -1,36 +1,28 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import createTweet from '@salesforce/apex/CreateTweetController.createTweet';
 
 export default class CreateTweetComponent extends LightningElement {
-    @api recordId;
+    @track tweetTitle = '';
     @track tweetText = '';
-    @track tweetImage = null; // New variable to hold the image data
+
+    handleTweetTitleChange(event) {
+        this.tweetTitle = event.target.value;
+    }
 
     handleTweetTextChange(event) {
         this.tweetText = event.target.value;
     }
 
-    handleImageChange(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                this.tweetImage = reader.result.split(',')[1]; // Base64 encoded image
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-
     async postTweet() {
         try {
-            await createTweet({ contactId: this.recordId, tweetText: this.tweetText, tweetImage: this.tweetImage });
+            await createTweet({ tweetTitle: this.tweetTitle, tweetText: this.tweetText });
             this.dispatchEvent(new ShowToastEvent({
                 title: 'Success',
                 message: 'Tweet posted successfully',
                 variant: 'success'
             }));
-            this.closeQuickAction();
+            this.clearForm();
             this.refreshView();
         } catch (error) {
             this.dispatchEvent(new ShowToastEvent({
@@ -42,15 +34,12 @@ export default class CreateTweetComponent extends LightningElement {
     }
 
     cancel() {
-        this.closeQuickAction();
+        this.clearForm();
     }
 
-    closeQuickAction() {
-        const closeQA = new CustomEvent('closequickaction', {
-            bubbles: true,
-            composed: true
-        });
-        this.dispatchEvent(closeQA);
+    clearForm() {
+        this.tweetTitle = '';
+        this.tweetText = '';
     }
 
     refreshView() {

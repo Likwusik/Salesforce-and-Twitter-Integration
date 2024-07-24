@@ -1,0 +1,49 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-wrap" style="background-color: #dcd9d9;">
+            <div class="slds-col slds-size_1-of-4">
+                <lightning-vertical-navigation selected-item={selectedItem} shaded="true" onclick={handleSelect}>
+                    <lightning-vertical-navigation-section label="Tweets Navigation">
+                        <lightning-vertical-navigation-item-icon 
+                            label="Create Tweet" 
+                            name="create">
+                        </lightning-vertical-navigation-item-icon>
+                        
+                        <lightning-vertical-navigation-item-icon 
+                            label="Recent Tweets" 
+                            name="recent" 
+                            icon-name="utility:clock">
+                        </lightning-vertical-navigation-item-icon>
+                        
+                        <lightning-vertical-navigation-item-icon 
+                            label="Created by Me" 
+                            name="created" 
+                            icon-name="utility:user">
+                        </lightning-vertical-navigation-item-icon>
+                        
+                        <lightning-vertical-navigation-item-icon 
+                            label="All Tweets" 
+                            name="all"  
+                            icon-name="utility:groups">
+                        </lightning-vertical-navigation-item-icon>
+                    </lightning-vertical-navigation-section>
+                </lightning-vertical-navigation>
+            </div>
+
+            <div class="slds-col slds-size_3-of-4">
+                <template if:true={isCreate}>
+                    <c-create-tweet-component></c-create-tweet-component>
+                </template>
+                <template if:true={isRecent}>
+                    <c-recent-tweets></c-recent-tweets>
+                </template>
+                <template if:true={isCreatedByMe}>
+                    <c-created-by-me></c-created-by-me>
+                </template>
+                <template if:true={isAllTweets}>
+                    <c-all-tweets></c-all-tweets>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

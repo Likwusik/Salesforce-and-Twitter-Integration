@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="All Tweets">
+        <div class="slds-p-around_medium">
+            <template if:true={tweets}>
+                <template for:each={tweets} for:item="tweet">
+                    <div key={tweet.Id} class="tweet-item slds-box slds-box_xx-small slds-m-bottom_small">
+                        <p class="slds-text-heading_small">{tweet.Tweet_Text__c}</p>
+                        <p class="slds-text-body_small">ID: {tweet.Tweet_ID__c} | Posted By: {tweet.CreatedBy.Name} | Date: {tweet.Tweet_Date__c}</p>
+                    </div>
+                </template>
+                <template if:true={hasMoreTweets}>
+                    <div class="slds-box slds-box_xx-small slds-m-top_medium">
+                        <lightning-button variant="neutral" label="Load More" onclick={loadMore}></lightning-button>
+                    </div>
+                </template>
+            </template>
+            <template if:false={tweets}>
+                <p>No tweets found.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

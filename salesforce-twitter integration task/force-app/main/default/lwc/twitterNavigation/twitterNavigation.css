@@ -1,0 +1,10 @@
+.slds-grid {
+    display: flex;
+}
+
+.slds-col {
+    display: flex;
+    flex-direction: column;
+}
+
+

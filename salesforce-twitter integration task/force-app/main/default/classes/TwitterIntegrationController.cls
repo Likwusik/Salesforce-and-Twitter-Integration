@@ -10,7 +10,12 @@ public with sharing class TwitterIntegrationController {
         public String text;
     }
 
-    public static TweetResponse postTweet(String twitterHandle, String tweetText) {
+    public class TweetResHelp {
+        public TweetResponse data;
+    }
+
+    @AuraEnabled
+    public static TweetResponse postTweet(String tweetText) {
         String url = POST_TO_TWITTER_ENDPOINT;
         System.debug('url' + url);
         String authHeader = Twitter0Auth1.getAuthorizationHeader('POST', url);
@@ -26,23 +31,30 @@ public with sharing class TwitterIntegrationController {
 
         Map<String, Object> requestBodyMap = new Map<String,Object>();
         requestBodyMap.put('text', tweetText);
+
         String requestBody = JSON.serialize(requestBodyMap);
         req.setBody(requestBody);
 
         Http http = new Http();
         HttpResponse res = http.send(req);
 
-        // if (res.getStatusCode() != 200) {
-        //     throw new CalloutException('Error posting tweet: ' + res.getBody());
-        // }
-
         System.debug('code ' + res.getStatusCode());
         System.debug('code ' + res.getBody());
 
-        TweetResponse tweetResponse = (TweetResponse) JSON.deserialize(res.getBody(), TweetResponse.class);
-        return tweetResponse;
-    }
+        if (res.getStatusCode() != 201) {
+            throw new CalloutException('Error posting tweet: ' + res.getBody());
+        }
 
+        TweetResHelp tweetResHelp = (TweetResHelp) JSON.deserialize(res.getBody(), TweetResHelp.class);
+        
+        TweetResponse tweetResponse = tweetResHelp.data;
+        
+        return tweetResponse;
+
+
+    }
+    
+    @AuraEnabled
     public static void deleteTweet(String tweetId) {
         String url = DELETE_FROM_TWITTER_ENDPOINT.replace(':id', tweetId);
         String authHeader = Twitter0Auth1.getAuthorizationHeader('DELETE', url);

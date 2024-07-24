@@ -1,9 +1,12 @@
 <template>
     <lightning-card title="Post a Tweet">
         <div class="slds-p-around_medium">
-            <lightning-textarea label="Tweet Text" value={tweetText} required onchange={handleTweetTextChange}></lightning-textarea>
+            <lightning-input label="Tweet Title" placeholder="Enter the tweet title..." value={tweetTitle} required onchange={handleTweetTitleChange}></lightning-input>
+            <lightning-textarea label="Tweet Text" placeholder="Write your tweet post here..." value={tweetText} required onchange={handleTweetTextChange}></lightning-textarea>
+          
             <lightning-button variant="brand" label="Post" onclick={postTweet}></lightning-button>
-            <lightning-button label="Cancel" onclick={cancel}></lightning-button>
+            <lightning-button label="Cancel" onclick={cancel}></lightning-button> 
+            
         </div>
     </lightning-card>
 </template>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Tweets Created by Me">
+        <div class="slds-p-around_medium">
+            <template if:true={tweets.data}>
+                <template for:each={tweets.data} for:item="tweet">
+                    <div key={tweet.Id} class="tweet-item slds-box slds-box_xx-small slds-m-bottom_small">
+                        <p class="slds-text-heading_small">{tweet.Tweet_Text__c}</p>
+                        <p class="slds-text-body_small">ID: {tweet.Tweet_ID__c} | Date: {tweet.Tweet_Date__c}</p>
+                    </div>
+                </template>
+            </template>
+            <template if:false={tweets.data}>
+                <p>No tweets found.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
