@@ -1,7 +1,7 @@
 <template>
     <lightning-card title="Recent Tweets">
         <div class="slds-p-around_medium">
-            <template if:true={formattedTweets}>
+            <template lwc:if={formattedTweets}>
                 <template for:each={formattedTweets} for:item="tweet">
                     <div key={tweet.Id} class="tweet-item slds-box slds-box_xx-small slds-m-bottom_small">
                         <p class="slds-text-heading_small">
@@ -16,7 +16,7 @@
                     </div>
                 </template>
             </template>
-            <template if:false={formattedTweets}>
+            <template lwc:else>
                 <p>No tweets found.</p>
             </template>
         </div>

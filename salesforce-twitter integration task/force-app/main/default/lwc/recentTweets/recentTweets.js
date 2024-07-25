@@ -4,16 +4,15 @@ import deleteTweet from '@salesforce/apex/TwitterIntegrationController.deleteTwe
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 import getTweetToDelete from '@salesforce/apex/TweetController.getTweetToDelete';
+import { RefreshEvent } from 'lightning/refresh';
 
 export default class RecentTweets extends LightningElement {
     
     selectedItem = 'recent';
-    isCreate = false;
-    isRecent = true;
-    isCreatedByMe = false;
-    isAllTweets = false;
+
 
     @wire(getRecentTweets) tweets;
+
 
     get formattedTweets() {
         if (this.tweets.data) {
@@ -53,8 +52,6 @@ export default class RecentTweets extends LightningElement {
     handleDeleteTweet(event) {
         const tweetId = event.target.dataset.id;
 
-        
-
         deleteTweet({ tweetId })
 
             .then(() => {
@@ -64,9 +61,9 @@ export default class RecentTweets extends LightningElement {
                         message: 'Tweet deleted successfully',
                         variant: 'success',
                     }));
-    
-                    // return refreshApex(this.tweets);
-                    window.location.reload();
+            
+                    return  refreshApex(this.tweets);
+                   
                
             })
             .catch(error => {
@@ -76,6 +73,8 @@ export default class RecentTweets extends LightningElement {
                     variant: 'error',
                 }));
             });
+
+            // this.dispatchEvent(new RefreshEvent(this.wiredTweetsResult));
     } 
 
 }

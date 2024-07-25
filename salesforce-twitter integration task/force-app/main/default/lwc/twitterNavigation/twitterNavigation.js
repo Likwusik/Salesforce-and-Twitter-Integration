@@ -1,4 +1,5 @@
 import { LightningElement, track } from 'lwc';
+import { RefreshEvent } from 'lightning/refresh';
 
 export default class TwitterNavigation extends LightningElement {
     @track selectedItem = 'create';
@@ -27,5 +28,7 @@ export default class TwitterNavigation extends LightningElement {
         } else {
             console.error('No selected item found:', event);
         }
+        
+        this.dispatchEvent(new RefreshEvent());
     }
 }
