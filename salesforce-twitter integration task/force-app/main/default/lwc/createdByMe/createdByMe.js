@@ -1,8 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 import getTweetsCreatedByMe from '@salesforce/apex/TweetController.getTweetsCreatedByMe';
-import deleteTweet from '@salesforce/apex/TwitterIntegrationController.deleteTweet';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { refreshApex } from '@salesforce/apex';
 
 
 export default class CreatedByMe extends LightningElement {

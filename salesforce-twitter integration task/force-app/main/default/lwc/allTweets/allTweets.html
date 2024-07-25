@@ -1,20 +1,26 @@
 <template>
     <lightning-card title="All Tweets">
         <div class="slds-p-around_medium">
-            <template if:true={tweets}>
-                <template for:each={tweets} for:item="tweet">
+            <template if:true={paginatedTweets}>
+                <template for:each={paginatedTweets} for:item="tweet">
                     <div key={tweet.Id} class="tweet-item slds-box slds-box_xx-small slds-m-bottom_small">
-                        <p class="slds-text-heading_small">{tweet.Tweet_Text__c}</p>
-                        <p class="slds-text-body_small">ID: {tweet.Tweet_ID__c} | Posted By: {tweet.CreatedBy.Name} | Date: {tweet.Tweet_Date__c}</p>
+                        <p class="slds-text-heading_small">
+                            <a href="javascript:void(0);" data-id={tweet.Id} onclick={handleTweetClick}>{tweet.Tweet_Title__c}</a>
+                        </p>
+                        <p class="slds-text-body_small">
+                            ID: {tweet.Tweet_ID__c} 
+                            | Posted By: {tweet.createdByName} 
+                            | Date: {tweet.formattedDate}
+                        </p>
+                        <lightning-button variant="destructive" label="Delete" onclick={handleDeleteTweet} data-id={tweet.Tweet_ID__c}></lightning-button>
                     </div>
                 </template>
-                <template if:true={hasMoreTweets}>
-                    <div class="slds-box slds-box_xx-small slds-m-top_medium">
-                        <lightning-button variant="neutral" label="Load More" onclick={loadMore}></lightning-button>
-                    </div>
-                </template>
+                <div class="slds-m-top_medium">
+                    <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+                    <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+                </div>
             </template>
-            <template if:false={tweets}>
+            <template if:false={paginatedTweets}>
                 <p>No tweets found.</p>
             </template>
         </div>

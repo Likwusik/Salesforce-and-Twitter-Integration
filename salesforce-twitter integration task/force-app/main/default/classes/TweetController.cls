@@ -23,7 +23,7 @@ public with sharing class TweetController {
 
     @AuraEnabled(cacheable=true)
     public static List<Tweet__c> getAllTweets() {
-        return [SELECT Id, Tweet_Title__c, Tweet_Text__c, Tweet_Date__c, Tweet_ID__c 
+        return [SELECT Id, Tweet_Title__c, Tweet_Text__c, Tweet_Date__c, Tweet_ID__c, CreatedBy.Name 
                 FROM Tweet__c 
                 WHERE Tweet_Date__c != null
                 AND Tweet_Title__c != null

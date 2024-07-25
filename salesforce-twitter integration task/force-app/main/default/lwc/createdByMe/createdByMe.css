@@ -1,0 +1,20 @@
+.tweet-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tweet-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.slds-modal__content {
+    overflow: hidden;
+}
+
+.slds-backdrop_open {
+    z-index: 999;
+}

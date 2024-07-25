@@ -4,7 +4,7 @@ import deleteTweet from '@salesforce/apex/TwitterIntegrationController.deleteTwe
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 import getTweetToDelete from '@salesforce/apex/TweetController.getTweetToDelete';
-import { RefreshEvent } from 'lightning/refresh';
+
 
 export default class RecentTweets extends LightningElement {
     
