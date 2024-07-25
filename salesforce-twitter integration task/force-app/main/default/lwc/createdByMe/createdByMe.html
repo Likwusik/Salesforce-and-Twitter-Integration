@@ -6,6 +6,7 @@
                     <div key={tweet.Id} class="tweet-item slds-box slds-box_xx-small slds-m-bottom_small">
                         <p class="slds-text-heading_small">
                             <a href="javascript:void(0);" data-id={tweet.Id} onclick={handleTweetClick}>{tweet.Tweet_Title__c}</a>
+                            
                         </p>
                         <p class="slds-text-body_small">
                             ID: {tweet.Tweet_ID__c} 
@@ -13,8 +14,8 @@
                         </p>   
                     </div>
                 </template>
-                <div class="slds-m-top_medium">
-                    <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+                <div class="slds-m-top_medium button-container">
+                    <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious} class="slds-m-right_xx-small"></lightning-button>
                     <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
                 </div>
             </template>

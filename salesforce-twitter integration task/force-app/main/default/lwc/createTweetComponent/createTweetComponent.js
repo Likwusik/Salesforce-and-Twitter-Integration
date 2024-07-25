@@ -45,5 +45,6 @@ export default class CreateTweetComponent extends LightningElement {
     refreshView() {
         const refreshEvent = new CustomEvent('force:refreshView');
         this.dispatchEvent(refreshEvent);
+        window.location.reload();
     }
 }

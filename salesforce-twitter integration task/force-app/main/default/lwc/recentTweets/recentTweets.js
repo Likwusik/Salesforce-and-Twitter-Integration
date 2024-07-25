@@ -72,10 +72,14 @@ export default class RecentTweets extends LightningElement {
                     message: error.body.message,
                     variant: 'error',
                 }));
+            }).finally(() => {
+                this.refreshView();
             });
 
-            // this.dispatchEvent(new RefreshEvent(this.wiredTweetsResult));
-    } 
+    }  refreshView() {
+        const refreshEvent = new CustomEvent('force:refreshView');
+        this.dispatchEvent(refreshEvent);
+    }
 
 }
 

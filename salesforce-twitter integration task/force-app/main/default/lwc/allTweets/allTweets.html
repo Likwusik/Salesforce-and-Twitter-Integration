@@ -2,21 +2,46 @@
     <lightning-card title="All Tweets">
         <div class="slds-p-around_medium">
             <template if:true={paginatedTweets}>
-                <template for:each={paginatedTweets} for:item="tweet">
-                    <div key={tweet.Id} class="tweet-item slds-box slds-box_xx-small slds-m-bottom_small">
-                        <p class="slds-text-heading_small">
-                            <a href="javascript:void(0);" data-id={tweet.Id} onclick={handleTweetClick}>{tweet.Tweet_Title__c}</a>
-                        </p>
-                        <p class="slds-text-body_small">
-                            ID: {tweet.Tweet_ID__c} 
-                            | Posted By: {tweet.createdByName} 
-                            | Date: {tweet.formattedDate}
-                        </p>
-                        <lightning-button variant="destructive" label="Delete" onclick={handleDeleteTweet} data-id={tweet.Tweet_ID__c}></lightning-button>
-                    </div>
-                </template>
-                <div class="slds-m-top_medium">
-                    <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="List of Tweets">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Tweet Title">Tweet Title</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Tweet ID">Tweet ID</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Posted By">Posted By</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Date">Date</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={paginatedTweets} for:item="tweet">
+                            <tr key={tweet.Id} class="slds-hint-parent">
+                                <th scope="row" data-label="Tweet Title">
+                                    <div class="slds-truncate" title={tweet.Tweet_Title__c}>
+                                        <a href="javascript:void(0);" data-id={tweet.Id} onclick={handleTweetClick}>{tweet.Tweet_Title__c}</a>
+                                    </div>
+                                </th>
+                                <td data-label="Tweet ID">
+                                    <div class="slds-truncate" title={tweet.Tweet_ID__c}>{tweet.Tweet_ID__c}</div>
+                                </td>
+                                <td data-label="Posted By">
+                                    <div class="slds-truncate" title={tweet.createdByName}>{tweet.createdByName}</div>
+                                </td>
+                                <td data-label="Date">
+                                    <div class="slds-truncate" title={tweet.formattedDate}>{tweet.formattedDate}</div>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                <div class="slds-m-top_medium button-container">
+                    <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious} class="slds-m-right_xx-small"></lightning-button>
                     <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
                 </div>
             </template>

@@ -54,6 +54,11 @@ export default class CreatedByMe extends LightningElement {
             this.updatePaginationButtons();
         }
     }
+    
+    handleTweetClick(event) {
+        const recordID = event.target.dataset.id;
+        window.open(`/lightning/r/Tweet__c/${recordID}/view`, "_blank");
+    }
 
     handleNext() {
         if ((this.pageNumber * this.pageSize) < this.totalTweets) {

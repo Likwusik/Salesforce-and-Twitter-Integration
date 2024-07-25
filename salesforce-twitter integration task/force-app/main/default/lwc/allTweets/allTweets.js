@@ -1,9 +1,7 @@
 import { LightningElement, track, wire } from 'lwc';
 import getAllTweets from '@salesforce/apex/TweetController.getAllTweets';
-import deleteTweet from '@salesforce/apex/TwitterIntegrationController.deleteTweet';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
-import getTweetToDelete from '@salesforce/apex/TweetController.getTweetToDelete';
 
 export default class AllTweets extends LightningElement {
     @track tweets;
@@ -53,32 +51,6 @@ export default class AllTweets extends LightningElement {
     handleTweetClick(event) {
         const recordID = event.target.dataset.id;
         window.open(`/lightning/r/Tweet__c/${recordID}/view`, "_blank");
-    }
-
-    handleDeleteTweet(event) {
-        const tweetId = event.target.dataset.id;
-
-        deleteTweet({ tweetId })
-
-            .then(() => {
-                getTweetToDelete({ tweetId })
-                    this.dispatchEvent(new ShowToastEvent({
-                        title: 'Success',
-                        message: 'Tweet deleted successfully',
-                        variant: 'success',
-                    }));
-            
-                    return  refreshApex(this.tweets);
-                   
-               
-            })
-            .catch(error => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'Error',
-                    message: error.body.message,
-                    variant: 'error',
-                }));
-            });
     }
 
     handlePrevious() {

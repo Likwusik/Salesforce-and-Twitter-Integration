@@ -18,3 +18,9 @@
 .slds-backdrop_open {
     z-index: 999;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

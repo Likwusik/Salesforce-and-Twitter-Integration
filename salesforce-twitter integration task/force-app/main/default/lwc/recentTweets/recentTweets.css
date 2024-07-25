@@ -4,11 +4,28 @@
     align-items: center;
 }
 
+.tweet-title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
 .tweet-text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+}
+
+.tweet-details {
+    flex: 2;
+    text-align: center;
+}
+
+.tweet-actions {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .slds-modal__content {

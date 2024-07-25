@@ -29,6 +29,6 @@ export default class TwitterNavigation extends LightningElement {
             console.error('No selected item found:', event);
         }
         
-        this.dispatchEvent(new RefreshEvent());
+        // this.dispatchEvent(new RefreshEvent());
     }
 }
