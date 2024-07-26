@@ -21,6 +21,7 @@ I need to create an application that allows me to create and post tweets through
 - [x] Create an Apex class to call the Twitter API, send request/handle response and generate needed Authorization Header:
    - _TwitterIntegrationController_ (test coverage: 100%)
    - _Twitter0Auth1_ (test coverage: 100%)
+- [x] Postman OAuth check
       
 **Step 3. - _Application:_**
 - [x] Create Visualforce Page: _Twitter Page_
