@@ -77,8 +77,8 @@ export default class RecentTweets extends LightningElement {
             });
 
     }  refreshView() {
-        const refreshEvent = new CustomEvent('force:refreshView');
-        this.dispatchEvent(refreshEvent);
+        console.log('Refreshing view...');
+        window.location.reload();
     }
 
 }

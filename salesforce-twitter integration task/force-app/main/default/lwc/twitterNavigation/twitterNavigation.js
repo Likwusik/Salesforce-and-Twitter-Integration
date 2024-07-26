@@ -21,14 +21,24 @@ export default class TwitterNavigation extends LightningElement {
     }
 
     handleSelect(event) {
-        // Ensure the event is correctly captured
         const selectedName = event.target.name;
         if (selectedName) {
             this.selectedItem = selectedName;
         } else {
             console.error('No selected item found:', event);
         }
-        
-        // this.dispatchEvent(new RefreshEvent());
     }
+
+    // connectedCallback() {
+    //     this.template.addEventListener('tweetposted', this.handleTweetPosted.bind(this));
+    // }
+
+    // handleTweetPosted() {
+    //     if (this.isRecent) {
+    //         const recentTweetsComponent = this.template.querySelector('c-recent-tweets');
+    //         if (recentTweetsComponent) {
+    //             recentTweetsComponent.refreshTweets();
+    //         }
+    //     }
+    // }
 }

@@ -56,23 +56,23 @@ public with sharing class TwitterIntegrationController {
     
     @AuraEnabled
     public static void deleteTweet(String tweetId) {
-        String url = DELETE_FROM_TWITTER_ENDPOINT.replace(':id', tweetId);
-        String authHeader = Twitter0Auth1.getAuthorizationHeader('DELETE', url);
+        // String url = DELETE_FROM_TWITTER_ENDPOINT.replace(':id', tweetId);
+        // String authHeader = Twitter0Auth1.getAuthorizationHeader('DELETE', url);
 
-        HttpRequest req = new HttpRequest();
-        req.setEndpoint(url);
-        req.setMethod('DELETE');
-        req.setHeader('Authorization', authHeader);
+        // HttpRequest req = new HttpRequest();
+        // req.setEndpoint(url);
+        // req.setMethod('DELETE');
+        // req.setHeader('Authorization', authHeader);
 
-        Http http = new Http();
-        HttpResponse res = http.send(req);
+        // Http http = new Http();
+        // HttpResponse res = http.send(req);
         
-        System.debug('code ' + res.getStatusCode());
-        System.debug('code ' + res.getBody());
+        // System.debug('code ' + res.getStatusCode());
+        // System.debug('code ' + res.getBody());
 
-        if (res.getStatusCode() != 200) {
-            throw new CalloutException('Error deleting tweet: ' + res.getBody());
-        }
+        // if (res.getStatusCode() != 200) {
+        //     throw new CalloutException('Error deleting tweet: ' + res.getBody());
+        // }
     }
     
 }
