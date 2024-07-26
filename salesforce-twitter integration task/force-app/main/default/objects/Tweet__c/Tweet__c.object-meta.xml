@@ -55,9 +55,10 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Tweet</label>
     <nameField>
+        <displayFormat>T-{0000}</displayFormat>
         <label>Tweet Name</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Tweets</pluralLabel>
     <searchLayouts></searchLayouts>

@@ -79,7 +79,7 @@ export default class RecentTweets extends LightningElement {
     }  refreshView() {
         console.log('Refreshing view...');
         window.location.reload();
+        selectedItem = 'recent';
     }
 
 }
-

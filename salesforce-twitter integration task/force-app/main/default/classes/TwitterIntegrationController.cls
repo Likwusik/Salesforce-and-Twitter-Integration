@@ -42,8 +42,10 @@ public with sharing class TwitterIntegrationController {
         System.debug('code ' + res.getBody());
 
         if (res.getStatusCode() != 201) {
-            throw new CalloutException('Error posting tweet: ' + res.getBody());
-        }
+            String errorMsg = 'Error posting tweet: ' + res.getBody();
+    System.debug(errorMsg);
+    throw new CalloutException(errorMsg);
+}
 
         TweetResHelp tweetResHelp = (TweetResHelp) JSON.deserialize(res.getBody(), TweetResHelp.class);
         

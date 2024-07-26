@@ -1,5 +1,4 @@
 import { LightningElement, track } from 'lwc';
-import { RefreshEvent } from 'lightning/refresh';
 
 export default class TwitterNavigation extends LightningElement {
     @track selectedItem = 'create';
@@ -28,17 +27,4 @@ export default class TwitterNavigation extends LightningElement {
             console.error('No selected item found:', event);
         }
     }
-
-    // connectedCallback() {
-    //     this.template.addEventListener('tweetposted', this.handleTweetPosted.bind(this));
-    // }
-
-    // handleTweetPosted() {
-    //     if (this.isRecent) {
-    //         const recentTweetsComponent = this.template.querySelector('c-recent-tweets');
-    //         if (recentTweetsComponent) {
-    //             recentTweetsComponent.refreshTweets();
-    //         }
-    //     }
-    // }
 }

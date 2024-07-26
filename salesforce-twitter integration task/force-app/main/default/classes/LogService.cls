@@ -5,7 +5,7 @@ public with sharing class LogService {
             Log__c log = new Log__c(
                 Class_Name__c = logDetails.className,
                 User_Friendly_Message__c = logDetails.userFriendlyMessage,
-                Message__c = logDetails.message.length() > 255 ? logDetails.message.substring(0, 255) : logDetails.message,
+                Message__c = logDetails.message,
                 StackTrace__c = logDetails.stackTrace
             );
             try {
@@ -13,8 +13,6 @@ public with sharing class LogService {
             } catch (Exception e) {
                 System.debug('Error inserting log record: ' + e.getMessage());
             }
-        } else {
-            throw new SecurityException('Insufficient permissions to create Log__c records.');
         }
     }
 
