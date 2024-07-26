@@ -12,6 +12,7 @@ I need to create an application that allows me to create and post tweets through
 **Step 1. - _Data model:_**
 
 - [x] Create Custom object: "Tweet" with fields: "Tweet Text" (long text area), "Tweet Date" (date/time), and "Tweet ID" (text).
+- [x] Create a custom object name Log with fields: “Message“, “StackTrace“, “User Friendly Message“, “Class Name“
 
 **Step 2. - _Integration Setup:_**
 - [x] Create test personal Twitter account and twitter developer lab.
