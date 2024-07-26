@@ -57,7 +57,6 @@ I need to create an application that allows me to create and post tweets through
 <img src="salesforce-twitter integration task/images\tweets.jpg"/>
 <img src="salesforce-twitter integration task/images\happy.jpg"/>
 <img src="salesforce-twitter integration task/images\nothappy.jpg"/>
-<img src="salesforce-twitter integration task/images\nothappy1.jpg"/>
 <img src="salesforce-twitter integration task/images\nothappy2.jpg"/>
 <img src="salesforce-twitter integration task/images\nothappy3.jpg"/>
 
