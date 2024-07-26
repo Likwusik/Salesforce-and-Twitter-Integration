@@ -27,8 +27,8 @@ I need to create an application that allows me to create and post tweets through
     - _CreateTweetComponent_ with CreateTweetComponentController (test coverage: 75%) to create Tweet with two buttons (post, delete)
     - _RecentTweets_ to show 5 tecent Tweets with _delete_ button
     - _TwitterNavigation_ to create navigation bar that allows us to swith between components
-    - _CreatedByMe_ to show Tweets that were created by current user with two buttons (previous,     next) which allows us to see 5 tweets on one page
-    - _AllTweets_ to show data table of all Tweets that were created with two buttons (previous,     next) which allows us to see 10 tweets on one page
+    - _CreatedByMe_ to show Tweets that were created by current user with two buttons (previous, next) which allows us to see 5 tweets on one page
+    - _AllTweets_ to show data table of all Tweets that were created with two buttons (previous, next) which allows us to see 10 tweets on one page
  - [x] Create TweetController (test coverage: 100%) for LWC Components that get required Tweets
  - [X] All records are made be clickable in every LWC
 
@@ -53,6 +53,7 @@ I need to create an application that allows me to create and post tweets through
 <img src="salesforce-twitter integration task/images\all2.jpg"/>
 
 **4)** Representation of the _delete_ button. We can see, that the Tweet is deleted from all components, from Twiter and from Salesforce in general (checked by inspector) 
+
 <img src="salesforce-twitter integration task/images\tweets.jpg"/>
 <img src="salesforce-twitter integration task/images\happy.jpg"/>
 <img src="salesforce-twitter integration task/images\nothappy.jpg"/>
