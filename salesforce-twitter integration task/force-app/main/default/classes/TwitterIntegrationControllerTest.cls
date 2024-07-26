@@ -43,7 +43,6 @@ public class TwitterIntegrationControllerTest {
         TwitterIntegrationController.deleteTweet('12345');
         Test.stopTest();
         
-        // No assertion is needed here, but you can add checks to ensure no exceptions were thrown
     }
 
     @isTest

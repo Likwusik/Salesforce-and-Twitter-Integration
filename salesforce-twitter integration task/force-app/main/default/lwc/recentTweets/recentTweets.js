@@ -8,27 +8,27 @@ import getTweetToDelete from '@salesforce/apex/TweetController.getTweetToDelete'
 
 export default class RecentTweets extends LightningElement {
     
-    selectedItem = 'recent';
-
-
+// Wire the Apex method to fetch recent tweets
     @wire(getRecentTweets) tweets;
 
-
+// Format tweet data for display
     get formattedTweets() {
         if (this.tweets.data) {
             console.log('Raw Tweet Data:', this.tweets.data); // Debugging line
             return this.tweets.data.map(tweet => ({
-                //...tweet,
+                // Map and format each tweet object
                 Id: tweet.Id,                // Salesforce record ID
                 Tweet_Title__c: tweet.Tweet_Title__c,
                 Tweet_ID__c: tweet.Tweet_ID__c, // Custom field from Twitter API
                 createdByName: tweet.CreatedBy ? tweet.CreatedBy.Name : 'Unknown',
                 formattedDate: this.formatDate(tweet.Tweet_Date__c)
             }));
+        } else {
+            return [];
         }
-        return [];
     }
 
+    // Convert date string to a readable format
     formatDate(dateString) {
         if (!dateString) return 'Unknown Date';
         
@@ -40,7 +40,7 @@ export default class RecentTweets extends LightningElement {
             hour: '2-digit',
             minute: '2-digit'
         };
-
+        // Format date according to options
         return new Intl.DateTimeFormat('en-GB', options).format(date);
     }
 
@@ -79,7 +79,6 @@ export default class RecentTweets extends LightningElement {
     }  refreshView() {
         console.log('Refreshing view...');
         window.location.reload();
-        selectedItem = 'recent';
     }
 
 }

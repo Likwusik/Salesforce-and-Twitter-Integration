@@ -19,6 +19,7 @@ export default class TwitterNavigation extends LightningElement {
         return this.selectedItem === 'all';
     }
 
+    // Handle navigation item selection
     handleSelect(event) {
         const selectedName = event.target.name;
         if (selectedName) {

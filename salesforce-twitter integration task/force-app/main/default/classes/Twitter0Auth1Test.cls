@@ -3,7 +3,7 @@ public class Twitter0Auth1Test {
 
     @isTest
     static void testGetAuthorizationHeader() {
-        // Setup: Define expected values to test against
+        // Define expected values to test against
         String expectedConsumerKey = 'testConsumerKey';
         String expectedConsumerSecret = 'testConsumerSecret';
         String expectedAccessToken = 'testAccessToken';
@@ -22,10 +22,6 @@ public class Twitter0Auth1Test {
         // Assertions
         System.assert(authHeader.startsWith('OAuth '), 'The header should start with "OAuth "');
         
-      
-        
-        // Optionally, verify if the signature part exists
-        // This is tricky due to dynamic nature, so often we focus on structural correctness
         Boolean hasSignature = authHeader.contains('oauth_signature="');
         System.assert(hasSignature, 'The header should contain the signature');
     }

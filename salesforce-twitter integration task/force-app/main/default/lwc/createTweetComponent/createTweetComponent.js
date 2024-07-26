@@ -3,19 +3,24 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import createTweet from '@salesforce/apex/CreateTweetController.createTweet';
 
 export default class CreateTweetComponent extends LightningElement {
-    @track tweetTitle = '';
+    // Stores the title and text of the tweet
+    @track tweetTitle = ''; 
     @track tweetText = '';
 
+    // Handles changes to the tweet title input field
     handleTweetTitleChange(event) {
-        this.tweetTitle = event.target.value;
+        this.tweetTitle = event.target.value; // Update tweetTitle with the input value
     }
 
+    // Handles changes to the tweet text input field
     handleTweetTextChange(event) {
         this.tweetText = event.target.value;
     }
 
+    // Posts a new tweet by calling the Apex method
     async postTweet() {
         try {
+            // Call the Apex method to create a tweet
             await createTweet({ tweetTitle: this.tweetTitle, tweetText: this.tweetText });
             this.dispatchEvent(new ShowToastEvent({
                 title: 'Success',
@@ -43,9 +48,6 @@ export default class CreateTweetComponent extends LightningElement {
     }
 
     refreshView() {
-        // const refreshEvent = new CustomEvent('force:refreshView');
-        // this.dispatchEvent(refreshEvent);
-        console.log('Refreshing view...');
         window.location.reload();
     }
 }
