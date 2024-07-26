@@ -11,7 +11,6 @@ public with sharing class LogService {
             try {
                 insert log;
             } catch (Exception e) {
-                // Handle or log the error accordingly
                 System.debug('Error inserting log record: ' + e.getMessage());
             }
         } else {

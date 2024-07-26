@@ -34,8 +34,6 @@ public with sharing class CreateTweetController {
             ));
 
             System.debug(e.getMessage());
-            // throw new AuraHandledException('Failed to post tweet: ' + e.getMessage());
-
         }
     }
 }
