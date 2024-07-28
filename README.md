@@ -62,7 +62,7 @@ I need to create an application that allows me to create and post tweets through
 <img src="salesforce-twitter integration task/images\nothappy2.jpg"/>
 <img src="salesforce-twitter integration task/images\nothappy3.jpg"/>
 
-**5)** Representation that records of the Order object displayed by the component are clickable. 
+**5)** Representation that records of the Tweet object displayed by the component are clickable. 
 <img src="salesforce-twitter integration task/images\show.jpg"/>
 <img src="salesforce-twitter integration task/images\show2.jpg"/>
 
